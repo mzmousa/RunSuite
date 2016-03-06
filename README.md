@@ -1,5 +1,5 @@
 # RunSuite
-Bash program to run a program against a test suite.
+### Bash program to run a program against a test suite.
 
 The file `suite-file` contains a list of stems, from which we construct the names of files containing the input and expected output of each test. For example, suppose our suite file is called suite.txt and contains the following entries:  
 ```
