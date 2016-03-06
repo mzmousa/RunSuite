@@ -1,0 +1,37 @@
+#!/bin/bash
+#if [[ "$#" -ne 2 ]]
+#  then
+#    >&2 echo "error"
+#    exit 1
+#fi
+IFS=''
+while read line
+do
+  if [ ! -r "$line.in" ] || [ ! -r "$line.out" ]
+    then
+      >&2 echo "error"
+      exit 1 
+  fi
+  temp=$(mktemp)
+  if [ -r "$line.args" ]
+    then
+     $2 $(cat "${line}.args") < "${line}.in" > temp
+  else 
+    $2 < "${line}.in" > temp
+  fi
+  in=$(cat "${line}.in")
+  out=$(cat "${line}.out")
+  if diff "${line}.out" temp >/dev/null
+  then
+    : 
+  else
+    echo Test failed:$line
+    echo Input:
+    echo "$in"
+    echo Expected:
+    echo "$out"
+    echo Actual:
+    echo $(cat temp)
+  fi
+  rm $temp
+done < "$1"
