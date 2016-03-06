@@ -11,7 +11,8 @@ The script will then run ./myprogram three times, once for each test specified i
 * The third time, it will run `./myprogram` with standard input redirected to come from `reallyBigTest.in`. The results, captured from standard output, will be compared with `reallyBigTest.out`.
 If the output of a given test case differs from the expected output, print the following to standard output (assuming test `test2` failed):
 
-```Test failed: test2
+```
+Test failed: test2
 Input:
 (contents of test2.in)
 Expected:
